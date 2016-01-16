@@ -1,0 +1,28 @@
+{
+  "name": "react-radar-chart",
+  "version": "0.0.1",
+  "description": "Radar chart built using React",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andy-law/react-radar-chart.git"
+  },
+  "keywords": [
+    "Radar",
+    "chart",
+    "React",
+    "Radar",
+    "Chart",
+    "React",
+    "Chart"
+  ],
+  "author": "Andy Law",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andy-law/react-radar-chart/issues"
+  },
+  "homepage": "https://github.com/andy-law/react-radar-chart"
+}
