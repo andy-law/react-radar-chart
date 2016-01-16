@@ -4,7 +4,8 @@
   "description": "Radar chart built using React",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "docs": "esdoc -c esdoc.json"
   },
   "repository": {
     "type": "git",
@@ -12,10 +13,6 @@
   },
   "keywords": [
     "Radar",
-    "chart",
-    "React",
-    "Radar",
-    "Chart",
     "React",
     "Chart"
   ],
@@ -26,6 +23,8 @@
   },
   "homepage": "https://github.com/andy-law/react-radar-chart",
   "devDependencies": {
+    "esdoc": "^0.4.3",
+    "esdoc-es7-plugin": "0.0.3",
     "react": "^0.14.6"
   }
 }

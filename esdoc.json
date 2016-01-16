@@ -1,0 +1,11 @@
+{
+	"source": "./src",
+	"destination": "./docs",
+	"includes": [".(js|jsx)", "index.js"],
+	"excludes": [".json","\\.spec\\.(js|jsx|es6)$"],
+	"index": "./README.md",
+	"coverage": false,
+	"plugins": [
+		{"name": "esdoc-es7-plugin"}
+	]
+}
