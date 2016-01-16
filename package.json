@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/andy-law/react-radar-chart/issues"
   },
-  "homepage": "https://github.com/andy-law/react-radar-chart"
+  "homepage": "https://github.com/andy-law/react-radar-chart",
+  "devDependencies": {
+    "react": "^0.14.6"
+  }
 }
