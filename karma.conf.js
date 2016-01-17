@@ -32,7 +32,7 @@ module.exports = function(config) {
     module: {
       loaders: [
         { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
-        { test: /\.s?css$/, include: [path.join(__dirname, 'src')], loaders: ['style', 'css', 'sass'] }
+        { test: /\.scss$/, include: [path.join(__dirname, 'src')], loaders: ['style', 'css', 'sass'] }
       ]
     },
     watch: false,

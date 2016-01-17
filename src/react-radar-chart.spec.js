@@ -42,4 +42,24 @@ describe('React Radial Chart', () => {
     expect(element.getAttribute('width')).toBe('100%');
     expect(element.getAttribute('height')).toBe('100%');
   });
+
+  it('Should render a <g/> element with class \'react-radar-chart-line\' for each item passed in in the values array', () => {
+    let values = [1, 2, 3, 4, 5];
+    component = TestUtils.renderIntoDocument(
+      <ReactRadarChart
+        values={ values }
+      />
+    );
+    let lines = TestUtils.scryRenderedDOMComponentsWithClass(component, 'react-radar-chart-line');
+    expect(lines.length).toEqual(values.length);
+
+    values = [1, 2, 3, 4, 5, 6, 7, 8];
+    component = TestUtils.renderIntoDocument(
+      <ReactRadarChart
+        values={ values }
+      />
+    );
+    lines = TestUtils.scryRenderedDOMComponentsWithClass(component, 'react-radar-chart-line');
+    expect(lines.length).toEqual(values.length);
+  });
 });
