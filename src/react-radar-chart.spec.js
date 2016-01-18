@@ -62,4 +62,45 @@ describe('React Radial Chart', () => {
     lines = TestUtils.scryRenderedDOMComponentsWithClass(component, 'react-radar-chart-line');
     expect(lines.length).toEqual(values.length);
   });
+
+  it('Should render the correct number of axes based on the keys passed in', () => {
+
+  });
+
+  it('Should render the correct label on each axis', () => {
+
+  });
+
+  it('Should render the correct number of circles based on the values passed in (based on min and max values)', () => {
+
+  });
+
+  it('Should render the correct label on each circle', () => {
+
+  });
+
+  it('Should render a path and shape elements within each line', () => {
+
+  });
+
+  it('Should add classnames correctly to each line based on the config passed in', () => {
+
+  });
+
+  it('Should render each line with the correct colour based on config passed in', () => {
+
+  });
+
+  it('Should fire back an event containing the point\'s data when rolled over', () => {
+
+  });
+
+  it('Should render the correct outer radius based on the svg size and line width', () => {
+
+  });
+
+  it('Should render the correct value for a line in each segment', () => {
+
+  });
+
 });
