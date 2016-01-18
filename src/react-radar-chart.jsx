@@ -13,11 +13,12 @@ class ReactRadarChart extends React.Component {
 
   getLineElems() {
     if (!this.props.values) {
-      return;
+      return <g></g>;
+    } else {
+      return this.props.values.map((d, i) => {
+        return <ReactRadarChartLine key={ i } />;
+      });
     }
-    return this.props.values.map((d, i) => {
-      return <ReactRadarChartLine key={ i } />;
-    });
   }
 
   render() {

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start",
-    "docs": "esdoc -c esdoc.json"
+    "docs": "esdoc -c esdoc.json",
+    "lint": "eslint --ext js,jsx --plugin eslint-plugin-react -c .eslintrc ./src/"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,9 @@
     "css-loader": "^0.23.1",
     "esdoc": "^0.4.3",
     "esdoc-es7-plugin": "0.0.3",
+    "eslint": "^1.10.3",
+    "eslint-loader": "^1.2.0",
+    "eslint-plugin-react": "^3.15.0",
     "immutable": "^3.7.6",
     "jasmine-core": "^2.4.1",
     "karma": "^0.13.19",
