@@ -79,18 +79,6 @@ describe('React Radial Chart', () => {
 
   });
 
-  it('Should render a path and shape elements within each line', () => {
-
-  });
-
-  it('Should add classnames correctly to each line based on the config passed in', () => {
-
-  });
-
-  it('Should render each line with the correct colour based on config passed in', () => {
-
-  });
-
   it('Should fire back an event containing the point\'s data when rolled over', () => {
 
   });
