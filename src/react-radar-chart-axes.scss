@@ -1,0 +1,29 @@
+.react-radar-chart-axes {
+
+}
+
+.react-radar-chart-axes__value-circle {
+  fill: none;
+  stroke: black;
+}
+
+.react-radar-chart-axes__value-rect {
+  fill: white;
+}
+
+.react-radar-chart-axes__value-text {
+  text-anchor: middle;
+  alignment-baseline: before-edge;
+}
+
+.react-radar-chart-axes__key-line {
+  stroke: black;
+}
+
+.react-radar-chart-axes__line-label {
+  text-anchor: start;
+
+  &.--align-right {
+    text-anchor: end;
+  }
+}

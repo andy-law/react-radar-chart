@@ -2,6 +2,7 @@ import React from 'react';
 import d3 from 'd3-scale';
 
 import ReactRadarChartLine from './react-radar-chart-line';
+import ReactRadarChartAxes from './react-radar-chart-axes';
 
 import './react-radar-chart.scss';
 
@@ -11,18 +12,32 @@ class ReactRadarChart extends React.Component {
     super(props);
     this._radiusScale = d3.scaleLinear();
     this._angleScale = d3.scaleLinear()
-      .range([0, Math.PI * 2]);
-    this._svgSize = 0;
+      .range([0, 360]);
+    this.state = {
+      svgSize: 0
+    };
   }
 
+  /**
+   * React lifecycle method. Set internal svgSize state (based on the ref, not props as props could be px or % value)
+   * @return {void}
+   */
   componentDidMount() {
-    this._svgSize = this.refs.radarSvg.offsetWidth;
+    console.log(this.refs.radarSvg);
+    this.setState({
+      svgSize: this.refs.radarSvg.offsetWidth
+    });
     this.dataUpdatedHandler();
   }
 
+  /**
+   * Initial data received or data updated via props. Set internal scale values for radius and angles
+   * @return {[type]} [description]
+   */
   dataUpdatedHandler() {
-    if (this.props.outerRadius) {
-      const outerRadius = (this.props.outerRadius || this.refs.radarSvg.offsetWidth);
+    if (this.props.values) {
+      // if no outerradius specifically set, reduce size by 20 due to text size
+      const outerRadius = (this.props.outerRadius || (this.refs.radarSvg.offsetWidth - 20) * 0.5);
       const flattenedValues = this.props.values.reduce(
         (prev, curr) => prev.concat(
           Object.keys(curr.values).map(k => curr.values[k])
@@ -39,28 +54,21 @@ class ReactRadarChart extends React.Component {
     }
   }
 
+  /**
+   * Get the axes (circles for indicating the values and lines for showing the keys)
+   * @return {ReactRadarChartAxes} JSX object representing an svg g attribute
+   */
   getRadarAxes() {
-    const radiusDomain = this._radiusScale.domain();
-    const numCircles = 1 + (Math.abs(radiusDomain[1] - radiusDomain[0]) / this.props.dataStep);
-    console.log(this._svgSize);
-    const circTranslate = this._svgSize * 0.5;
-    return (<g className='react-radar-chart__axes'>
-      <g className='react-radar-chart__axis-circles'>
-        {
-          Array.from({length: numCircles}, (d, i) => this.props.dataMin + (this.props.dataStep * i) ).map( d => {
-            return (
-              <circle key={ d }
-                className='react-radar-chart__axis-circle'
-                r={ this._radiusScale(d) }
-                transform={ 'translate(' + circTranslate + ', ' + circTranslate + ')' }
-              />);
-          }, this )
-        }
-      </g>
-      <g className='react-radar-chart__lines'>
-
-      </g>
-    </g>);
+    return (
+      <ReactRadarChartAxes
+        radiusScale={ this._radiusScale }
+        angleScale={ this._angleScale }
+        svgSize={ this.state.svgSize }
+        dataMin={ this.props.dataMin }
+        dataStep={ this.props.dataStep }
+        valueKeys={ this.props.keys }
+      />
+    );
   }
 
   getLineElems() {
@@ -69,7 +77,16 @@ class ReactRadarChart extends React.Component {
     }
 
     return this.props.values.map((d, i) => {
-      return <ReactRadarChartLine key={ i } />;
+      return (
+        <ReactRadarChartLine
+          key={ i }
+          model={ d }
+          valueKeys={ this.props.keys }
+          radiusScale={ this._radiusScale }
+          angleScale={ this._angleScale }
+          svgSize={ this.state.svgSize }
+        />
+      );
     });
   }
 
@@ -82,7 +99,9 @@ class ReactRadarChart extends React.Component {
         height={ this.props.svgSize }
       >
         { this.getRadarAxes() }
-        { this.getLineElems() }
+        <g className='react-radar-chart__lines'>
+          { this.getLineElems() }
+        </g>
       </svg>
     );
   }

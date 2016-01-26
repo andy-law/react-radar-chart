@@ -3,7 +3,7 @@ import React from 'react';
 class ReactRadarChartLine extends React.Component {
 
   getLine() {
-    
+
   }
 
   getPoints() {

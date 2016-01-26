@@ -25,7 +25,7 @@ ReactDOM.render(
     svgSize='500px'
     keys={ keys }
     values={ lineValues }
-    outerRadius={ 250 }
+    innerRadius={ 30 }
     dataMax={ 10 }
     dataStep={ 1 }
   />,
