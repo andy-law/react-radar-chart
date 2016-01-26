@@ -12,6 +12,7 @@ class ReactRadarChart extends React.Component {
     this._radiusScale = d3.scaleLinear();
     this._angleScale = d3.scaleLinear()
       .range([0, Math.PI * 2]);
+    this.dataUpdatedHandler();
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -23,8 +24,16 @@ class ReactRadarChart extends React.Component {
   dataUpdatedHandler() {
     if (this.props.outerRadius) {
       const outerRadius = (this.props.outerRadius || this.refs['radar-svg'].offsetWidth);
+      const flattenedValues = this.props.values.reduce(
+        (prev, curr) => prev.concat(
+          Object.keys(curr.values).map(k => curr.values[k])
+        ),
+        []
+      );
+      const max = (this.props.dataMax || Math.max.apply(null, flattenedValues));
       this._radiusScale
-        .domain([this.props.innerRadius, outerRadius]);
+        .domain([this.props.innerRadius, outerRadius])
+        .range([0, max]);
     }
     if (this.props.keys && this.props.keys.length) {
       this._angleScale.domain([0, this.props.keys.length]);
@@ -63,12 +72,15 @@ ReactRadarChart.propTypes = {
   keys: React.PropTypes.array,
   values: React.PropTypes.array,
   innerRadius: React.PropTypes.number,
-  outerRadius: React.PropTypes.number
+  outerRadius: React.PropTypes.number,
+  dataMax: React.PropTypes.number,
+  dataStep: React.PropTypes.number
 };
 
 ReactRadarChart.defaultProps = {
   svgSize: '100%',
-  innerRadius: 0
+  innerRadius: 0,
+  dataStep: 1
 };
 
 export default ReactRadarChart;
