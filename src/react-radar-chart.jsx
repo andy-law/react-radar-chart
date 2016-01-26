@@ -1,5 +1,5 @@
 import React from 'react';
-import d3_scale from 'd3-scale';
+import d3 from 'd3-scale';
 
 import ReactRadarChartLine from './react-radar-chart-line';
 
@@ -9,10 +9,9 @@ class ReactRadarChart extends React.Component {
 
   constructor(props) {
     super(props);
-    this._defaultSize = '100%';
-    this._radiusScale = d3_scale.linear();
-    this._angleScale = d3_scale.linear()
-      range([0, Math.PI * 2]);
+    this._radiusScale = d3.scaleLinear();
+    this._angleScale = d3.scaleLinear()
+      .range([0, Math.PI * 2]);
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -23,8 +22,9 @@ class ReactRadarChart extends React.Component {
 
   dataUpdatedHandler() {
     if (this.props.outerRadius) {
+      const outerRadius = (this.props.outerRadius || this.refs['radar-svg'].offsetWidth);
       this._radiusScale
-        .domain()
+        .domain([this.props.innerRadius, outerRadius]);
     }
     if (this.props.keys && this.props.keys.length) {
       this._angleScale.domain([0, this.props.keys.length]);
@@ -45,8 +45,9 @@ class ReactRadarChart extends React.Component {
     return (
       <svg
         className='react-radar-chart'
-        width={ this.props.svgSize || this._defaultSize }
-        height={ this.props.svgSize || this._defaultSize }
+        ref='radar-svg'
+        width={ this.props.svgSize }
+        height={ this.props.svgSize }
       >
         { this.getLineElems() }
       </svg>
@@ -63,6 +64,11 @@ ReactRadarChart.propTypes = {
   values: React.PropTypes.array,
   innerRadius: React.PropTypes.number,
   outerRadius: React.PropTypes.number
+};
+
+ReactRadarChart.defaultProps = {
+  svgSize: '100%',
+  innerRadius: 0
 };
 
 export default ReactRadarChart;
