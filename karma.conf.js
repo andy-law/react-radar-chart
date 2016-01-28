@@ -30,8 +30,8 @@ module.exports = function(config) {
   singleRun: true,
   webpack: {
     module: {
-      loaders: [
-        { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader' },
+      preLoaders: [
+        { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
         { test: /\.scss$/, include: [path.join(__dirname, 'src')], loaders: ['style', 'css', 'sass'] }
       ]
     },
