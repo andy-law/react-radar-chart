@@ -29,6 +29,10 @@ module.exports = function(config) {
   ],
   singleRun: true,
   webpack: {
+    entry: [
+      'babel-polyfill',
+      './examples/index'
+    ],
     module: {
       preLoaders: [
         { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },

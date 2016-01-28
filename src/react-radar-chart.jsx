@@ -84,7 +84,6 @@ class ReactRadarChart extends React.Component {
           valueKeys={ this.props.keys }
           radiusScale={ this._radiusScale }
           angleScale={ this._angleScale }
-          svgSize={ this.state.svgSize }
         />
       );
     });

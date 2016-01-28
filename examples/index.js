@@ -7,6 +7,8 @@ let lineValues = [
     className: 'line-blue',
     lineType: 'dotted/dashed/solid',
     lineStyle: '',
+    pointType: 'circle/diamond/cross/triangle',
+    pointSize: '10',
     values: {
       stamina: 2,
       strength: 2,
@@ -25,7 +27,7 @@ ReactDOM.render(
     svgSize='500px'
     keys={ keys }
     values={ lineValues }
-    innerRadius={ 30 }
+    innerRadius={ 20 }
     dataMax={ 10 }
     dataStep={ 1 }
   />,

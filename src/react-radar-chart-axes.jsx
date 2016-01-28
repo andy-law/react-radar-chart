@@ -13,6 +13,7 @@ class ReactRadarChartAxes extends React.Component {
     const radiusDomain = this.props.radiusScale.domain();
     const numCircles = 1 + (Math.abs(radiusDomain[1] - radiusDomain[0]) / this.props.dataStep);
     const circTranslate = (this.props.svgSize * 0.5);
+    console.log(Array.from({length: numCircles}, (d, i) => this.props.dataMin + (this.props.dataStep * i) ));
     return (
       <g
         className='react-radar-chart-axes__circles'
